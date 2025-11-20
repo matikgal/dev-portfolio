@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+
+import React, { useState, useEffect } from 'react';
 import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import Navbar from './components/Navbar';
@@ -12,6 +13,23 @@ import Footer from './components/Footer';
 import NotFound from './components/NotFound';
 import { AppProvider, useApp } from './context/AppContext';
 import { CheckCircle2, XCircle, Info } from 'lucide-react';
+
+// ScrollToTop Component
+// Automatically scrolls window to top when pathname changes
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    // Use 'instant' behavior to avoid fighting with page transitions
+    document.documentElement.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "instant", 
+    });
+  }, [pathname]);
+
+  return null;
+};
 
 // Toast Container
 const ToastContainer = () => {
@@ -64,6 +82,7 @@ function AppContent() {
 
     return (
       <HashRouter>
+        <ScrollToTop />
         <CommandPalette />
         <ToastContainer />
         

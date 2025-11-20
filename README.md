@@ -46,17 +46,6 @@ To run this project locally, follow these steps:
     npm run build
     ```
 
-## 🌍 Deployment (GitHub Pages)
-
-This project is configured for easy deployment.
-
-1.  Run `npm run build` to generate the production files in the `dist` folder.
-2.  Upload the contents of the `dist` folder to your GitHub repository (e.g., to a `gh-pages` branch).
-3.  In GitHub Repository Settings > Pages, select the source branch.
-4.  Your portfolio will be live!
-
-*Note: The `vite.config.ts` is set to use relative paths (`base: './'`) to ensure compatibility with GitHub Pages subdirectories.*
-
 ## 📫 Contact
 
 *   **Email**: mateusz.galuszka21@gmail.com

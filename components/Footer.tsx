@@ -21,6 +21,7 @@ const Footer: React.FC = () => {
     const fetchWeather = async () => {
       try {
         const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=52.2297&longitude=21.0122&current_weather=true');
+        if (!res.ok) return;
         const data = await res.json();
         if (data.current_weather) {
             setWeather({
@@ -29,7 +30,8 @@ const Footer: React.FC = () => {
             });
         }
       } catch (e) {
-        console.error("Failed to fetch weather");
+        // Silently fail if weather service is unavailable
+        console.warn("Weather widget unavailable");
       }
     };
     fetchWeather();
@@ -91,7 +93,7 @@ const Footer: React.FC = () => {
                         title="Open Command Palette (Ctrl+K)"
                     >
                         <Command className="w-4 h-4 text-slate-500 dark:text-slate-400 group-hover:text-primary transition-colors" />
-                        <span className="font-normal text-slate-600 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white transition-colors text-xs">{t.footer.cmdHint}</span>
+                        <span className="font-normal text-slate-600 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white transition-colors text-xs font-medium">{t.footer.cmdHint}</span>
                         <div className="flex items-center gap-1 ml-1">
                             <kbd className="font-mono px-1.5 py-0.5 bg-slate-200 dark:bg-neutral-800 rounded border border-slate-300 dark:border-neutral-600 text-slate-700 dark:text-slate-200 text-[10px] font-bold shadow-sm min-w-[24px]">Ctrl</kbd>
                             <span className="text-slate-400 dark:text-slate-500 text-[10px] font-bold">+</span>
